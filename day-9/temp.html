@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>3D Carousel (CSS Only)</title>
+    <style>
+        :root {
+            --image-count: 6;
+            --partical-count: 10;
+            --radius: 300px;
+            --color: black;
+            --bgColor: white;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bgColor);
+            height: 100vh;
+            color: var(--color);
+        }
+
+        .item {
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background: radial-gradient(red, blue); */
+            width: 100%;
+            height: 100vh;
+        }
+
+        .item1 {
+            position: sticky;
+            top: 0;
+            left: 0;
+        }
+
+        .carousel {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 10s linear infinite;
+            background: url(Coca-Cola.png);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            opacity: 0;
+            transition: 2s;
+            padding: 10px;
+        }
+
+        .carousel:hover h1 {
+            display: block;
+            transform: translateY(-350%);
+            text-align: center;
+            position: absolute;
+            animation: none;
+            background: var(--bgColor);
+            opacity: 1;
+            color: var(--color);
+            border-radius: 10px;
+        }
+
+        .carousel img {
+            --angle: calc(360deg / var(--image-count) * var(--i));
+            position: absolute;
+            width: 60%;
+            height: 70%;
+            object-fit: cover;
+            top: 50%;
+            left: 50%;
+            cursor: pointer;
+            border-radius: 20px;
+            transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(var(--radius));
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .circle-box {
+            perspective: 100px;
+            z-index: 100;
+            background: var(--bgColor);
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .circle {
+            width: 200px;
+            height: 200px;
+            background: rgba(236, 236, 236, 0.158);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .circle:hover .particle1 {
+            background: url('https://i.pinimg.com/736x/a7/9f/c2/a79fc2d7b3f58d85f282b97e350485c3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: none;
+            transform: rotate(var(--angle)) translateY(-100px) rotateY(180deg);
+            animation: pulse1 3s ease-in-out 1;
+
+
+        }
+
+        .circle:hover .particle2 {
+            animation: none;
+
+            animation: pulse1 3s ease-in-out 1;
+        }
+
+
+        .particle2,
+        .particle1 {
+            --angle: calc(360deg / var(--partical-count) * var(--position));
+            position: absolute;
+            padding: 2px;
+            border-radius: 50%;
+            background: rgb(0, 255, 0);
+            box-shadow: 0px 0px 10px 3px rgb(0, 255, 0);
+            transform: rotate(var(--angle)) translateY(-30px);
+            animation: pulse2 3s ease-in-out infinite;
+        }
+
+        .particle1 {
+            background: red;
+            box-shadow: 0px 0px 10px 3px red;
+        }
+
+
+        @keyframes pulse1 {
+
+            /* 0%,
+            100% {
+                transform: scale(1) rotate(var(--angle)) translateY(0px);
+            } */
+
+            50% {
+                transform: scale(1) rotate(var(--angle)) translateY(40px);
+            }
+        }
+
+        @keyframes pulse2 {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(var(--angle)) translateY(40px);
+            }
+
+            50% {
+                transform: scale(1) rotate(var(--angle)) translateY(0px);
+            }
+        }
+
+        @media (max-width:700px) {
+            .item {
+                scale: .8;
+            }
+
+            .carousel {
+                width: 200px;
+                height: 200px;
+
+            }
+
+            .circle-box {
+                display: block;
+                background: var(--bgColor);
+                border: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="root">
+
+        <div class="item item1">
+            <div class="carousel">
+                <h1>MUSIC PAGE</h1>
+
+                <img src="https://i.pinimg.com/1200x/c2/73/33/c2733343624d5230f0d742ce84927e2e.jpg" style="--i: 0" />
+                <img src="https://i.pinimg.com/736x/da/a2/4f/daa24fba67219708a6d8d58dca472cfd.jpg" style="--i: 1" />
+                <img src="https://i.pinimg.com/736x/0f/7e/4d/0f7e4d3fc33dd920b86c48006a64bd72.jpg" style="--i: 2" />
+                <img src="https://i.pinimg.com/736x/bb/cc/72/bbcc7240e75cd830ce44eb5196d2c3d3.jpg" style="--i: 3" />
+                <img src="https://i.pinimg.com/736x/5d/84/dd/5d84dd5070ac201b03cea7ce8f769e45.jpg" style="--i: 4" />
+                <img src="https://i.pinimg.com/736x/3a/b6/d0/3ab6d0c8190b4ba732c31739fe3303a8.jpg" style="--i: 5" />
+            </div>
+        </div>
+
+        <div class="circle-box" style="border: 1px solid red;">
+
+            <div class="item">
+                <div class="circle">
+                    <span class="particle1" style="--position:0"></span>
+                    <span class="particle2" style="--position:1"></span>
+                    <span class="particle1" style="--position:2"></span>
+                    <span class="particle2" style="--position:3"></span>
+                    <span class="particle1" style="--position:4"></span>
+                    <span class="particle2" style="--position:5"></span>
+                    <span class="particle1" style="--position:6"></span>
+                    <span class="particle2" style="--position:7"></span>
+                    <span class="particle1" style="--position:8"></span>
+                    <span class="particle2" style="--position:9"></span>
+                    <span class="particle1" style="--position:10"></span>
+                </div>
+            </div>
+
+
+            <div class="item">
+                <div class="circle">
+                    <span class="particle1" style="--position:0"></span>
+                    <span class="particle2" style="--position:1"></span>
+                    <span class="particle1" style="--position:2"></span>
+                    <span class="particle2" style="--position:3"></span>
+                    <span class="particle1" style="--position:4"></span>
+                    <span class="particle2" style="--position:5"></span>
+                    <span class="particle1" style="--position:6"></span>
+                    <span class="particle2" style="--position:7"></span>
+                    <span class="particle1" style="--position:8"></span>
+                    <span class="particle2" style="--position:9"></span>
+                    <span class="particle1" style="--position:10"></span>
+                </div>
+            </div>
+
+
+
+            <div class="item">
+                <div class="circle">
+                    <span class="particle1" style="--position:0"></span>
+                    <span class="particle2" style="--position:1"></span>
+                    <span class="particle1" style="--position:2"></span>
+                    <span class="particle2" style="--position:3"></span>
+                    <span class="particle1" style="--position:4"></span>
+                    <span class="particle2" style="--position:5"></span>
+                    <span class="particle1" style="--position:6"></span>
+                    <span class="particle2" style="--position:7"></span>
+                    <span class="particle1" style="--position:8"></span>
+                    <span class="particle2" style="--position:9"></span>
+                    <span class="particle1" style="--position:10"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
