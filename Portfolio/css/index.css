@@ -108,6 +108,7 @@ i:hover {
     justify-content: space-around;
     align-items: center;
     padding: 20px;
+    background: black;
 }
 
 .header {
