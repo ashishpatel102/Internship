@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+
+    <style>
+        .body {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+
+        }
+
+        .container {
+            /* display: flex; */
+            place-self: center;
+            background: teal;
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 10px;
+            position: absolute;
+            clip-path: polygon(0 0%, 100% 0, 100% 0%, 50% 100%);
+            /* transform: translate(0%, 100px); */
+            --angle: calc(360deg / var(2) * var(--i));
+
+            /* transform: translate(-50%, -50%) rotateY(var(50)) translateZ(var(300px)); */
+
+            animation: rotate 4s linear infinite;
+        }
+
+        .item1 {
+            left: 33%;
+            background: rgb(0, 0, 0);
+        }
+
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item item1" style="--i:1"></div>
+        <div class="item item2" style="--i:2"></div>
+    </div>
+
+</body>
+
+</html>
